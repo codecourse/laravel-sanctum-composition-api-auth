@@ -41,6 +41,7 @@ export default function useAuth() {
 
     return {
         login,
+        attempt,
         getAuthenticated,
         getUser
     }
