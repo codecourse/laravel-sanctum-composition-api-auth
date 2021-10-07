@@ -1,4 +1,7 @@
 <template>
+  <div v-if="authenticated">
+      Hey {{ user.name }}. <button>Logout</button>
+  </div>
   <form v-on:submit.prevent="login(form)">
       <div>
           <label for="email">Email</label>
@@ -20,7 +23,7 @@
     import { reactive } from 'vue'
     import useAuth from './auth/useAuth'
 
-    const { login } = useAuth()
+    const { login, getAuthenticated: authenticated, getUser: user } = useAuth()
 
     const form = reactive({
         email: '',
