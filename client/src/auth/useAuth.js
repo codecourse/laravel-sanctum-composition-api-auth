@@ -47,11 +47,23 @@ export default function useAuth() {
         }
     }
 
+    const logout = async () => {
+        try {
+            await axios.post('/logout')
+
+            setAuthenticated(false)
+            setUser({})
+        } catch (e) {
+            //
+        }
+    }
+
     return {
         login,
         attempt,
         getAuthenticated,
         getUser,
-        errors
+        errors,
+        logout
     }
 }
