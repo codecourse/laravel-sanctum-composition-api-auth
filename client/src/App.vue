@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent="login">
+  <form v-on:submit.prevent="login(form)">
       <div>
           <label for="email">Email</label>
           <input type="text" name="email" id="email" v-model="form.email">
@@ -17,17 +17,13 @@
 </template>
 
 <script setup>
-    import axios from 'axios'
     import { reactive } from 'vue'
+    import useAuth from './auth/useAuth'
+
+    const { login } = useAuth()
 
     const form = reactive({
         email: '',
         password: ''
     })
-
-    const login = async () => {
-        await axios.get('/sanctum/csrf-cookie')
-
-        await axios.post('/login', form)
-    }
 </script>
